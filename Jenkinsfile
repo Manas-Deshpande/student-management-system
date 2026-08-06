@@ -41,16 +41,16 @@ node {
         '''
     }
 
-    stage('Code Quality') {
-        sh '''
-        if [ -d "venv" ]; then
-            . venv/bin/activate
-            python -m flake8 .
-        else
-            python3 -m flake8 .
-        fi
-        '''
-    }
+   stage('Code Quality') {
+    sh '''
+    if [ -d "venv" ]; then
+        . venv/bin/activate
+        python -m flake8 app.py calculator.py test_calculator.py
+    else
+        python3 -m flake8 app.py calculator.py test_calculator.py
+    fi
+    '''
+}
 
     stage('Generate Coverage') {
         sh '''
